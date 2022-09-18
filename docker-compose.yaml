@@ -1,0 +1,42 @@
+services:
+  bdpostgres:
+    image: bitnami/postgresql:latest
+    restart: always
+    volumes:
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRESQL_USER=postgres
+      - POSTGRESQL_DATABASE=tarea1
+      - ALLOW_EMPTY_PASSWORD=yes
+
+  redis1:
+    image: bitnami/redis:latest
+    restart: always
+    ports:
+      - "3001:6379"
+    environment:
+      - REDIS_MAXMEMORY=1mb
+      - REDIS_MAXMEMORY_POLICY=allkeys-lru
+      - ALLOW_EMPTY_PASSWORD=yes
+
+  redis2:
+    image: bitnami/redis:latest
+    restart: always
+    ports:
+      - "3002:6379"
+    environment:
+      - REDIS_MAXMEMORY=1mb
+      - REDIS_MAXMEMORY_POLICY=allkeys-lru
+      - ALLOW_EMPTY_PASSWORD=yes
+
+  redis3:
+    image: bitnami/redis:latest
+    restart: always
+    ports:
+      - "3003:6379"
+    environment:
+      - REDIS_MAXMEMORY=1mb
+      - REDIS_MAXMEMORY_POLICY=allkeys-lru
+      - ALLOW_EMPTY_PASSWORD=yes
